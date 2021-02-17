@@ -1,0 +1,761 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "rms资源管理系统后端",
+        "title": "掌悦 rms资源管理系统",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "127.0.0.1:8999",
+    "paths": {
+        "/api/v1/addAdminPath": {
+            "post": {
+                "description": "新增管理员路径",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "新增管理员路由路径",
+                "parameters": [
+                    {
+                        "description": "adminPath",
+                        "name": "adminPath",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.AdminPathModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户添加成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户添加失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/addUser": {
+            "post": {
+                "description": "新增用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "管理添加用户",
+                "parameters": [
+                    {
+                        "description": "user",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户添加成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户添加失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/addUserPath": {
+            "post": {
+                "description": "新增用户路由路径",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "新增用户路径",
+                "parameters": [
+                    {
+                        "description": "userPath",
+                        "name": "userPath",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UserPathModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户添加成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户添加失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/delUser/:userId": {
+            "delete": {
+                "description": "管理删除用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "删除用户",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "userID",
+                        "name": "userId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户删除成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户删除失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/drive/delDrive/:driveId": {
+            "delete": {
+                "description": "根据设备id删除设备信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "adminDrive"
+                ],
+                "summary": "删除设备",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "userDrive",
+                        "name": "user",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"删除设备成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"删除设备失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/drive/getAllDrive": {
+            "get": {
+                "description": "查询所有设备信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "adminDrive"
+                ],
+                "summary": "查询全部设备信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "页数",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "每页显示数量",
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户设备查询成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户设备查询失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/drive/getUserDrive/:userName": {
+            "get": {
+                "description": "根据用户名查询设备信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "adminDrive"
+                ],
+                "summary": "查询设备信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "userName",
+                        "name": "userName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户设备查询成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户设备查询失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/drive/postDrive": {
+            "post": {
+                "description": "添加设备信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "adminDrive"
+                ],
+                "summary": "添加设备",
+                "parameters": [
+                    {
+                        "description": "userDrive",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UserDrive"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"添加设备成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"添加设备失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/drive/putDrive": {
+            "put": {
+                "description": "修改设备信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "adminDrive"
+                ],
+                "summary": "修改设备",
+                "parameters": [
+                    {
+                        "description": "userDrive",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UserDrive"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"修改设备成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"修改设备失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/getAdminUrl": {
+            "get": {
+                "description": "查询管理员后台信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "查询管理员路径",
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户查询成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户查询失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/getAllUser": {
+            "get": {
+                "description": "查询全部用户信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "查询全部用户",
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户查询成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户查询失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/getUser/:userName": {
+            "get": {
+                "description": "根据用户名查询用户信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "查询用户信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "userName",
+                        "name": "userName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户查询成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户查询失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/modifyUser": {
+            "put": {
+                "description": "管理修改用户权限",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "修改用户",
+                "parameters": [
+                    {
+                        "description": "user",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户更新成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户更新失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/getUserPath": {
+            "get": {
+                "description": "查询用户可有路径",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "查询用户路径",
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户查询成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户查询失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/info/:userName": {
+            "get": {
+                "description": "查询全部用户信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "查询用户信息",
+                "responses": {
+                    "200": {
+                        "description": "code\":200,\"msg\":\"用户查询成功\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    },
+                    "400": {
+                        "description": "code\":400,\"msg\":\"用户查询失败\"}",
+                        "schema": {
+                            "$ref": "#/definitions/model.Res"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.AdminOneUrlList": {
+            "type": "object",
+            "properties": {
+                "AdminPathId": {
+                    "type": "integer"
+                },
+                "isOk": {
+                    "type": "integer"
+                },
+                "oneUrl": {
+                    "type": "string"
+                },
+                "oneUrlIcon": {
+                    "type": "string"
+                },
+                "oneUrlName": {
+                    "type": "string"
+                },
+                "urlId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.AdminPathModel": {
+            "type": "object",
+            "properties": {
+                "adminOne": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.AdminOneUrlList"
+                    }
+                },
+                "baseIcon": {
+                    "type": "string"
+                },
+                "baseUrl": {
+                    "type": "string"
+                },
+                "baseUrlName": {
+                    "type": "string"
+                },
+                "isOk": {
+                    "type": "integer"
+                },
+                "pathId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.OneUrlList": {
+            "type": "object",
+            "properties": {
+                "isOk": {
+                    "type": "integer"
+                },
+                "oneUrl": {
+                    "type": "string"
+                },
+                "oneUrlIcon": {
+                    "type": "string"
+                },
+                "oneUrlName": {
+                    "type": "string"
+                },
+                "urlId": {
+                    "type": "integer"
+                },
+                "userPathId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Res": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.User": {
+            "type": "object",
+            "required": [
+                "userName"
+            ],
+            "properties": {
+                "isOk": {
+                    "type": "integer"
+                },
+                "userAvatar": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "integer"
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "userPwd": {
+                    "type": "string"
+                },
+                "userRole": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.UserDrive": {
+            "type": "object",
+            "required": [
+                "cpuModel",
+                "diskSize",
+                "display1",
+                "driveName",
+                "memorySize",
+                "userName"
+            ],
+            "properties": {
+                "DriveId": {
+                    "type": "integer"
+                },
+                "cpuModel": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "integer"
+                },
+                "diskSize": {
+                    "type": "string"
+                },
+                "display1": {
+                    "type": "string"
+                },
+                "display2": {
+                    "type": "string"
+                },
+                "displayCardModel": {
+                    "type": "string"
+                },
+                "driveName": {
+                    "type": "string"
+                },
+                "inTime": {
+                    "type": "integer"
+                },
+                "memorySize": {
+                    "type": "string"
+                },
+                "ssdSize": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "integer"
+                },
+                "userName": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.UserPathModel": {
+            "type": "object",
+            "properties": {
+                "baseIcon": {
+                    "type": "string"
+                },
+                "baseUrl": {
+                    "type": "string"
+                },
+                "baseUrlName": {
+                    "type": "string"
+                },
+                "isOk": {
+                    "type": "integer"
+                },
+                "oneUrlList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.OneUrlList"
+                    }
+                },
+                "pathId": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

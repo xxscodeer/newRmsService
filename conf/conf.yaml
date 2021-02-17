@@ -1,0 +1,14 @@
+app:
+  name: "rms"
+  port: "8999"
+  host: "127.0.0.1"
+  mode: "debug"
+mysql:
+  dbName: "rmsService"
+  host: "127.0.0.1"
+  port: "3306"
+  dbUser: "root"
+  dbPwd: "aa123456"
+  loc: "Local"
+  parseTime: "True"
+  charset: "utf8"

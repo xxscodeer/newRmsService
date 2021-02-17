@@ -1,0 +1,500 @@
+definitions:
+  model.AdminOneUrlList:
+    properties:
+      AdminPathId:
+        type: integer
+      isOk:
+        type: integer
+      oneUrl:
+        type: string
+      oneUrlIcon:
+        type: string
+      oneUrlName:
+        type: string
+      urlId:
+        type: integer
+    type: object
+  model.AdminPathModel:
+    properties:
+      adminOne:
+        items:
+          $ref: '#/definitions/model.AdminOneUrlList'
+        type: array
+      baseIcon:
+        type: string
+      baseUrl:
+        type: string
+      baseUrlName:
+        type: string
+      isOk:
+        type: integer
+      pathId:
+        type: integer
+    type: object
+  model.OneUrlList:
+    properties:
+      isOk:
+        type: integer
+      oneUrl:
+        type: string
+      oneUrlIcon:
+        type: string
+      oneUrlName:
+        type: string
+      urlId:
+        type: integer
+      userPathId:
+        type: integer
+    type: object
+  model.Res:
+    properties:
+      code:
+        type: integer
+      msg:
+        type: string
+    type: object
+  model.User:
+    properties:
+      isOk:
+        type: integer
+      userAvatar:
+        type: string
+      userId:
+        type: integer
+      userName:
+        type: string
+      userPwd:
+        type: string
+      userRole:
+        type: string
+    required:
+    - userName
+    type: object
+  model.UserDrive:
+    properties:
+      DriveId:
+        type: integer
+      cpuModel:
+        type: string
+      createdAt:
+        type: integer
+      diskSize:
+        type: string
+      display1:
+        type: string
+      display2:
+        type: string
+      displayCardModel:
+        type: string
+      driveName:
+        type: string
+      inTime:
+        type: integer
+      memorySize:
+        type: string
+      ssdSize:
+        type: string
+      updatedAt:
+        type: integer
+      userName:
+        type: string
+    required:
+    - cpuModel
+    - diskSize
+    - display1
+    - driveName
+    - memorySize
+    - userName
+    type: object
+  model.UserPathModel:
+    properties:
+      baseIcon:
+        type: string
+      baseUrl:
+        type: string
+      baseUrlName:
+        type: string
+      isOk:
+        type: integer
+      oneUrlList:
+        items:
+          $ref: '#/definitions/model.OneUrlList'
+        type: array
+      pathId:
+        type: integer
+    type: object
+host: 127.0.0.1:8999
+info:
+  contact:
+    name: API Support
+    url: http://www.swagger.io/support
+  description: rms资源管理系统后端
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: 掌悦 rms资源管理系统
+  version: "1.0"
+paths:
+  /api/v1/addAdminPath:
+    post:
+      consumes:
+      - application/json
+      description: 新增管理员路径
+      parameters:
+      - description: adminPath
+        in: body
+        name: adminPath
+        required: true
+        schema:
+          $ref: '#/definitions/model.AdminPathModel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户添加成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户添加失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 新增管理员路由路径
+      tags:
+      - admin
+  /api/v1/addUser:
+    post:
+      consumes:
+      - application/json
+      description: 新增用户
+      parameters:
+      - description: user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户添加成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户添加失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 管理添加用户
+      tags:
+      - admin
+  /api/v1/addUserPath:
+    post:
+      consumes:
+      - application/json
+      description: 新增用户路由路径
+      parameters:
+      - description: userPath
+        in: body
+        name: userPath
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserPathModel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户添加成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户添加失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 新增用户路径
+      tags:
+      - admin
+  /api/v1/delUser/:userId:
+    delete:
+      consumes:
+      - application/json
+      description: 管理删除用户
+      parameters:
+      - description: userID
+        in: path
+        name: userId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户删除成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户删除失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 删除用户
+      tags:
+      - admin
+  /api/v1/drive/delDrive/:driveId:
+    delete:
+      consumes:
+      - application/json
+      description: 根据设备id删除设备信息
+      parameters:
+      - description: userDrive
+        in: path
+        name: user
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"删除设备成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"删除设备失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 删除设备
+      tags:
+      - adminDrive
+  /api/v1/drive/getAllDrive:
+    get:
+      consumes:
+      - application/json
+      description: 查询所有设备信息
+      parameters:
+      - description: 页数
+        in: query
+        name: page
+        required: true
+        type: string
+      - description: 每页显示数量
+        in: query
+        name: pageSize
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户设备查询成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户设备查询失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 查询全部设备信息
+      tags:
+      - adminDrive
+  /api/v1/drive/getUserDrive/:userName:
+    get:
+      consumes:
+      - application/json
+      description: 根据用户名查询设备信息
+      parameters:
+      - description: userName
+        in: path
+        name: userName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户设备查询成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户设备查询失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 查询设备信息
+      tags:
+      - adminDrive
+  /api/v1/drive/postDrive:
+    post:
+      consumes:
+      - application/json
+      description: 添加设备信息
+      parameters:
+      - description: userDrive
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserDrive'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"添加设备成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"添加设备失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 添加设备
+      tags:
+      - adminDrive
+  /api/v1/drive/putDrive:
+    put:
+      consumes:
+      - application/json
+      description: 修改设备信息
+      parameters:
+      - description: userDrive
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserDrive'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"修改设备成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"修改设备失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 修改设备
+      tags:
+      - adminDrive
+  /api/v1/getAdminUrl:
+    get:
+      consumes:
+      - application/json
+      description: 查询管理员后台信息
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户查询成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户查询失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 查询管理员路径
+      tags:
+      - admin
+  /api/v1/getAllUser:
+    get:
+      consumes:
+      - application/json
+      description: 查询全部用户信息
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户查询成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户查询失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 查询全部用户
+      tags:
+      - admin
+  /api/v1/getUser/:userName:
+    get:
+      consumes:
+      - application/json
+      description: 根据用户名查询用户信息
+      parameters:
+      - description: userName
+        in: path
+        name: userName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户查询成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户查询失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 查询用户信息
+      tags:
+      - admin
+  /api/v1/modifyUser:
+    put:
+      consumes:
+      - application/json
+      description: 管理修改用户权限
+      parameters:
+      - description: user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户更新成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户更新失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 修改用户
+      tags:
+      - admin
+  /user/getUserPath:
+    get:
+      consumes:
+      - application/json
+      description: 查询用户可有路径
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户查询成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户查询失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 查询用户路径
+      tags:
+      - user
+  /user/info/:userName:
+    get:
+      consumes:
+      - application/json
+      description: 查询全部用户信息
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: code":200,"msg":"用户查询成功"}
+          schema:
+            $ref: '#/definitions/model.Res'
+        "400":
+          description: code":400,"msg":"用户查询失败"}
+          schema:
+            $ref: '#/definitions/model.Res'
+      summary: 查询用户信息
+      tags:
+      - user
+swagger: "2.0"
